@@ -1,0 +1,31 @@
+.sidebar {
+  width: 310px;
+  background-color: #282828;
+  border-right: 5px solid #ffdb17;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  width: 140px;
+  height: 45px;
+  margin: 30px 135px 0px 35px;
+}
+
+.sidebar-block {
+  margin: 50px 0px 0px 35px;
+  p {
+    color: #737373;
+    font-size: 14px;
+  }
+}
+
+.sidebar-block-item {
+  margin: 15px 0px 0px 50px;
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }
+}

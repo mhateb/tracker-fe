@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="138" height="45" viewBox="0 0 138 45">
+    <g fill="none" fill-rule="evenodd">
+        <text fill="#FFDB17" font-family="Helvetica" font-size="27.3" transform="translate(0 .728)">
+            <tspan x="44" y="30">Racker</tspan>
+        </text>
+        <path d="M0 .728h56.23V45H0z"/>
+        <g fill-rule="nonzero">
+            <path fill="#FFF" d="M0 .728h7.128v43.495H0z"/>
+            <path fill="#FFF" d="M0 7.719V.729h56.23v6.99zM0 25.583v-6.99h26.135v6.99zM0 45v-6.99h34.194V45z"/>
+            <path fill="#FFDB17" d="M37.223.728h7.127V45h-7.127z"/>
+        </g>
+        <path fill="#FFDB17" fill-rule="nonzero" d="M26.135.728H56.23v6.99H26.135z"/>
+        <g>
+            <path fill="#FFDB17" fill-rule="nonzero" d="M47.223 33.194h90.02V45h-90.02z"/>
+            <text fill="#282828" font-family="Helvetica" font-size="7" transform="translate(61.476 34.932)">
+                <tspan x="0" y="6">Prove Your Skills</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
