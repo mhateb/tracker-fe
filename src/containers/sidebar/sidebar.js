@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from 'react-router-dom';
 
 import Logo from "../../../resources/icons/logo.svg";
 
@@ -52,9 +53,9 @@ class Sidebar extends PureComponent {
     this.state.profileLinks.map((item) => (
       <div className={styles["sidebar-block-item"]} key={item.id}>
         <img/>
-        <a href={item.link}>
+        <Link to={item.link}>
           {item.title}
-        </a>
+        </Link>
       </div>
     ))
   )
@@ -63,9 +64,9 @@ class Sidebar extends PureComponent {
     this.state.dictionaryLinks.map((item) => (
       <div className={styles["sidebar-block-item"]} key={item.id}>
         <img/>
-        <a href={item.link}>
+        <Link to={item.link}>
           {item.title}
-        </a>
+        </Link>
       </div>
     ))
   )
