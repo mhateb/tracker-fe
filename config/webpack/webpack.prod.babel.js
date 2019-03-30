@@ -1,6 +1,7 @@
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 import paths from './paths';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 module.exports = {
     mode: 'production',
@@ -12,6 +13,10 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin([paths.outputPath.split('/').pop()], {
             root: paths.root
+        }),
+        new MiniCssExtractPlugin({
+          filename: '[name].[hash].css',
+          chunkFilename: '[id].[hash].css',
         })
     ],
     devtool: 'source-map'

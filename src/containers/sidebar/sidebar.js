@@ -53,7 +53,7 @@ class Sidebar extends PureComponent {
       <div className={styles["sidebar-block-item"]} key={item.id}>
         <img/>
         <a href={item.link}>
-          <a>{item.title}</a>
+          {item.title}
         </a>
       </div>
     ))
@@ -64,7 +64,7 @@ class Sidebar extends PureComponent {
       <div className={styles["sidebar-block-item"]} key={item.id}>
         <img/>
         <a href={item.link}>
-          <a>{item.title}</a>
+          {item.title}
         </a>
       </div>
     ))
@@ -89,9 +89,6 @@ class Sidebar extends PureComponent {
         <div className={styles["sidebar-block"]}>
           <div className={styles["sidebar-block-item"]}>
             <img />
-            <Link href="/">
-              <a>Exit</a>
-            </Link>
           </div>
         </div>
       </aside>

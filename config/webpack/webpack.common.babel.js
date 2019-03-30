@@ -25,6 +25,6 @@ module.exports = {
                 removeComments: true,
                 removeAttributeQuotes: true
             }
-        })
+        }),
     ]
 };
