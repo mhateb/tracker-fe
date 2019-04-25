@@ -10,19 +10,19 @@ class Sidebar extends PureComponent {
     profileLinks: [
       {
         id: 0,
-        title: "Profile",
+        title: "Профиль",
         link: "/profile",
         icon: ""
       },
       {
         id: 1,
-        title: "Announcment",
+        title: "Новости",
         link: "/announcment",
         icon: ""
       },
       {
         id: 2,
-        title: "Options",
+        title: "Настройки",
         link: "/options",
         icon: ""
       }
@@ -30,19 +30,19 @@ class Sidebar extends PureComponent {
     dictionaryLinks: [
       {
         id: 3,
-        title: "My dictionary",
+        title: "Словарь",
         link: "/dictionary",
         icon: ""
       },
       {
         id: 4,
-        title: "Training",
+        title: "Упражнения",
         link: "/training",
         icon: ""
       },
       {
         id: 5,
-        title: "Rating",
+        title: "Рейтинг",
         link: "/rating",
         icon: ""
       }
@@ -76,20 +76,22 @@ class Sidebar extends PureComponent {
       <aside className={styles.sidebar}>
         <img src={Logo} className={styles.logo} />
         <div className={styles["sidebar-block"]}>
-          <p>Profile</p>
+          <p>Профиль</p>
           {
             this.getProfileLinks()
           }
         </div>
         <div className={styles["sidebar-block"]}>
-          <p>Dictionary</p>
+          <p>Словарь</p>
           {
             this.getDictionaryLinks()
           }
         </div>
         <div className={styles["sidebar-block"]}>
           <div className={styles["sidebar-block-item"]}>
-            <img />
+            <Link to="/">
+              Выйти
+            </Link>
           </div>
         </div>
       </aside>

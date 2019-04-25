@@ -13,6 +13,8 @@ import Register from '../auth/register/register';
 import Forgot from '../auth/forgot/forgot';
 import Default from '../default/default';
 
+import './app.scss';
+
 class App extends React.PureComponent {
   render() {
     return (
@@ -23,11 +25,9 @@ class App extends React.PureComponent {
         <Route path="/dictionary" component={() => <Default> <Dictionary /> </Default>}/>
         <Route path="/training" component={() => <Default> <Training /> </Default>}/>
         <Route path="/rating" component={() => <Default> <Rating /> </Default>}/>
-        <Route path="/login" component={() => <Default> <Login /> </Default>}/>
-        <Route path="/register" component={() => <Default> <Register /> </Default>}/>
-        <Route path="/forgot" component={() => <Default> <Forgot /> </Default>}/>
-
-        <Route component={NotFound} />
+        <Route path="/login" component={() => <Login /> }/>
+        <Route path="/register" component={() => <Register /> }/>
+        <Route path="/forgot" component={() => <Forgot /> }/>
       </Router>
     )
   }
