@@ -1,14 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Table from '../../components/table/table'
+import DictionaryHeader from './dictionary-header/dictionary-header';
+import DictionaryContent from './dictionary-content/dictionary-content';
 
-const Dictionary = () => {
-  return (
-    <div>
-      <h1>Dictionary</h1>
-      <Table />
-    </div>
-  )
+import styles from './dictionary.scss';
+
+class Dictionary extends React.PureComponent {
+  state = {
+    isAnyPacks: !!this.props.packs
+  }
+
+  render () {
+    const { packs, selectedPack } = this.props
+
+    return (
+      <section className={styles["dictionary-container"]}>
+        <DictionaryHeader packs={packs} />
+        <DictionaryContent packs={packs} />
+      </section>
+    )
+  }
 };
 
-export default Dictionary;
+function mapStateToProps(state) {
+  const { packs } = state
+
+  return { 
+    selectedPack: packs.selectedPack,
+    packs: packs.items
+  }
+}
+
+export default connect(mapStateToProps)(Dictionary)

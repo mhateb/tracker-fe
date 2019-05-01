@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import { 
-  userReducer,
-  packsReducer
-} from './userReducer';
+import { userReducer } from './userReducer';
+import { packsReducer } from './packsReducer';
 import { reducer as formReducer } from 'redux-form';
 
 export default combineReducers({
