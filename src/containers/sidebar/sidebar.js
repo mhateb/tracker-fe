@@ -19,12 +19,6 @@ class Sidebar extends PureComponent {
         title: "Новости",
         link: "/announcment",
         icon: ""
-      },
-      {
-        id: 2,
-        title: "Настройки",
-        link: "/options",
-        icon: ""
       }
     ],
     dictionaryLinks: [

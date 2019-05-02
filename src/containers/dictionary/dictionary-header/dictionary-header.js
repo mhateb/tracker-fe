@@ -1,8 +1,6 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 import styles from './dictionary-header.scss';
-
-
 
 const DictionaryHeader = ({packs}) => {
     const isAnyPacks = !!packs
@@ -15,11 +13,17 @@ const DictionaryHeader = ({packs}) => {
 
     return (
         <header className={styles["dictionary-header"]}>
-          <h1>Словарь</h1>
+          <h1>Мой словарь</h1>
+          <p>Добавление новых коллекций слов и новых слов.</p>
+          <p>Манипуляции над уже добавленными словами.</p>
+          <div className={styles.actions}>
+          <div className={styles.search}>
+            <input type="text" placeholder="Поиск" />
+          </div>
           {
               isAnyPacks ? (
                 <div className={styles["pack-select"]}>
-                    <label htmlFor="packname">Выберете набор слов:</label>
+                    <label htmlFor="packname">Коллекция:</label>
                     <select name="packname">
                     {
                         getOptions(packs)
@@ -30,9 +34,9 @@ const DictionaryHeader = ({packs}) => {
                   null
               )
           }
-         
+         </div>
         </header>
     )
 }
 
-export default DictionaryHeader
+export default memo(DictionaryHeader)
