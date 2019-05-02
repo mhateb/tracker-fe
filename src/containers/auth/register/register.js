@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -48,17 +49,15 @@ const mapStateToProps = (state) => {
   };
 };
 
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withRouter,
+  memo,
+  reduxForm({
+    form: 'register-form'
+  })
+)(Register)
 
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-  )(
-    withRouter(
-      memo(
-        reduxForm({
-          form: 'register-form'
-        })(Register)
-      )
-    )
-  );
