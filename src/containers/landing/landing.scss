@@ -1,0 +1,29 @@
+.landing-header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282828;
+    color: white;
+    font-size: 20px;
+    padding: 0px 40px;
+}
+
+.landing-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 20px;
+}
+
+.landing-footer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282828;
+    color: white;
+    font-size: 20px;
+}

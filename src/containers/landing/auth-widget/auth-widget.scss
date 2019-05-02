@@ -1,0 +1,35 @@
+.auth-widget-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    height: 100%;
+}
+
+.auth-link-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    padding: 15px 30px;
+    background-color: #ffdb17;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #282828;
+}
+
+.auth-link-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    padding: 15px 30px;
+    background-color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #282828;
+}

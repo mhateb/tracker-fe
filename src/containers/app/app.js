@@ -11,6 +11,8 @@ import Login from '../auth/login/login';
 import Register from '../auth/register/register';
 import Forgot from '../auth/forgot/forgot';
 import Default from '../default/default';
+import Landing from '../landing/landing';
+import PrivateRoute from './private-route';
 
 import './app.scss';
 
@@ -18,11 +20,12 @@ class App extends React.PureComponent {
   render() {
     return (
       <Router>
-        <Route path="/profile" component={() => <Default> <Profile /> </Default>}/>
-        <Route path="/announcment" component={() => <Default> <Announcment /> </Default>}/>
-        <Route path="/dictionary" component={() => <Default> <Dictionary /> </Default>}/>
-        <Route path="/training" component={() => <Default> <Training /> </Default>}/>
-        <Route path="/rating" component={() => <Default> <Rating /> </Default>}/>
+        <Route exact path="/" component={Landing} />
+        <PrivateRoute path="/profile" component={() => <Default> <Profile /> </Default>}/>
+        <PrivateRoute path="/announcment" component={() => <Default> <Announcment /> </Default>}/>
+        <PrivateRoute path="/dictionary" component={() => <Default> <Dictionary /> </Default>}/>
+        <PrivateRoute path="/training" component={() => <Default> <Training /> </Default>}/>
+        <PrivateRoute path="/rating" component={() => <Default> <Rating /> </Default>}/>
         <Route path="/login" component={() => <Login /> }/>
         <Route path="/register" component={() => <Register /> }/>
         <Route path="/forgot" component={() => <Forgot /> }/>
