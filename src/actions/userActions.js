@@ -35,11 +35,6 @@ export function loginFetch(payload) {
         payload = {user: payload}
 
         api.users.login(payload)
-            .then((response) => {
-                dispatch(loginRequest());
-
-                return response;
-            })
             .then((response) => dispatch(loginSuccess(response)))
             .catch(() => dispatch(loginFail()));
     };
@@ -70,11 +65,6 @@ export function registerFetch(payload) {
         payload = {user: payload}
 
         api.users.register(payload)
-            .then((response) => {
-                dispatch(registerRequest());
-
-                return response;
-            })
             .then((response) => dispatch(registerSuccess(response)))
             .catch(() => dispatch(registerFail()));
     };

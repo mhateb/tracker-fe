@@ -2,7 +2,10 @@
 import { 
     GET_PACKS_REQUEST,
     GET_PACKS_SUCCESS,
-    GET_PACKS_FAIL
+    GET_PACKS_FAIL,
+    ADD_NEW_PACK_REQUEST,
+    ADD_NEW_PACK_SUCCESS,
+    ADD_NEW_PACK_FAIL
   } from '../actions/packsActions'
 
 const initialState = {
@@ -38,7 +41,29 @@ export function packsReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 isFail: true
-            }        
+            }  
+            
+        case ADD_NEW_PACK_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }    
+
+        case ADD_NEW_PACK_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                selectedPack: action.payload,
+                isFail: false,
+                items: [...state.items, action.payload]
+            }    
+
+        case ADD_NEW_PACK_FAIL:
+            return {
+                ...state,
+                loading: false,
+                isFail: true
+            }    
 
         default:
           return state

@@ -5,7 +5,7 @@ import DictionaryHeader from './dictionary-header/dictionary-header';
 import DictionaryContent from './dictionary-content/dictionary-content';
 import DictionaryEmpty from './dictionary-empty/dictionary-empty';
 import Loader from '../../components/loader/loader';
-import {getPacksFetch} from '../../actions/packsActions';
+import {getPacksFetch, addNewPackFetch} from '../../actions/packsActions';
 
 import styles from './dictionary.scss';
 
@@ -17,14 +17,14 @@ class Dictionary extends React.PureComponent {
   }
 
   render () {
-    const { packs, selectedPack, loading, isAnyPacks } = this.props
+    const { packs, selectedPack, loading, isAnyPacks, addNewPackFetch } = this.props
 
     return (
       <Loader isLoading={loading}>
         {
           isAnyPacks ? (
             <section className={styles["dictionary-container"]}>
-              <DictionaryHeader packs={packs} />
+              <DictionaryHeader packs={packs} addNewPackFetch={addNewPackFetch} selectedPack={selectedPack} />
               <DictionaryContent />
             </section>
           ) : (
@@ -49,7 +49,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      getPacksFetch: () => dispatch(getPacksFetch())
+      getPacksFetch: () => dispatch(getPacksFetch()),
+      addNewPackFetch: (payload) => dispatch(addNewPackFetch(payload))
   };
 };
 

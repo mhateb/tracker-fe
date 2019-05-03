@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Field, reduxForm, Form } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
 import {registerFetch} from '../../../actions/userActions';
@@ -9,11 +9,11 @@ import Loader from '../../../components/loader/loader';
 
 import styles from '../auth.scss';
 
-const Register = ({registerFetch, handleSubmit}) => {
+const Register = ({registerFetch, handleSubmit, loading}) => {
   return (
     <Loader isLoading={loading}>
       <div className={styles["form-container"]}>
-        <Form onSubmit={handleSubmit(val => registerFetch(val))}>
+        <form onSubmit={handleSubmit(val => registerFetch(val))}>
           <div className={styles["form-field"]}>
             <label htmlFor="username">Логин</label>
             <Field name="username" component="input" type="text" required />
@@ -34,7 +34,7 @@ const Register = ({registerFetch, handleSubmit}) => {
             <button type="submit" label="submit">Войти</button>
             <span>Уже зарегистрированы? <Link to="/login">Войти</Link></span>
           </div>
-        </Form>
+        </form>
       </div>
     </Loader>
   )
