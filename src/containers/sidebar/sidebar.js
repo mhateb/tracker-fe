@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import Logo from '../../../resources/icons/logo.svg';
 import ProfileIcon from '../../../resources/icons/profile.svg';
@@ -8,6 +9,7 @@ import DictionaryIcon from '../../../resources/icons/dictionary.svg';
 import TrainingIcon from '../../../resources/icons/training.svg';
 import RatingIcon from '../../../resources/icons/rating.svg';
 import LogoutIcon from '../../../resources/icons/logout.svg';
+import { userLogout } from '../../actions/userActions';
 
 import styles from "./sidebar.scss";
 
@@ -76,6 +78,8 @@ class Sidebar extends PureComponent {
   )
 
   render () {
+    const {userLogout} = this.props
+
     return (
       <aside className={styles.sidebar}>
         <img src={Logo} className={styles.logo} />
@@ -94,7 +98,7 @@ class Sidebar extends PureComponent {
         <div className={styles["sidebar-block"]}>
           <div className={styles["sidebar-block-item"]}>
             <img src={LogoutIcon} />
-            <Link to="/">
+            <Link to="/" onClick={userLogout}>
               Выйти
             </Link>
           </div>
@@ -104,4 +108,13 @@ class Sidebar extends PureComponent {
   }
 }
 
-export default Sidebar
+const mapDispatchToProps = (dispatch) => {
+  return {
+      userLogout: () => dispatch(userLogout())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Sidebar)

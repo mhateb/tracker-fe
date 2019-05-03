@@ -6,5 +6,5 @@ import { reducer as formReducer } from 'redux-form';
 export default combineReducers({
   user: userReducer,
   packs: packsReducer,
-  form: formReducer
+  form: formReducer,
 })

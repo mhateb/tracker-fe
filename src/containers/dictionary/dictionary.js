@@ -3,22 +3,35 @@ import { connect } from 'react-redux';
 
 import DictionaryHeader from './dictionary-header/dictionary-header';
 import DictionaryContent from './dictionary-content/dictionary-content';
+import DictionaryEmpty from './dictionary-empty/dictionary-empty';
+import Loader from '../../components/loader/loader';
+import {getPacksFetch} from '../../actions/packsActions';
 
 import styles from './dictionary.scss';
 
 class Dictionary extends React.PureComponent {
-  state = {
-    isAnyPacks: !!this.props.packs
+  componentDidMount() {
+    const {getPacksFetch} = this.props
+
+    getPacksFetch()
   }
 
   render () {
-    const { packs, selectedPack } = this.props
+    const { packs, selectedPack, loading, isAnyPacks } = this.props
 
     return (
-      <section className={styles["dictionary-container"]}>
-        <DictionaryHeader packs={packs} />
-        <DictionaryContent packs={packs} />
-      </section>
+      <Loader isLoading={loading}>
+        {
+          isAnyPacks ? (
+            <section className={styles["dictionary-container"]}>
+              <DictionaryHeader packs={packs} />
+              <DictionaryContent />
+            </section>
+          ) : (
+            <DictionaryEmpty />
+          )
+        }
+      </Loader>
     )
   }
 };
@@ -28,8 +41,16 @@ function mapStateToProps(state) {
 
   return { 
     selectedPack: packs.selectedPack,
-    packs: packs.items
+    isAnyPacks: packs.isAnyPacks,
+    packs: packs.items,
+    loading: packs.loading
   }
 }
 
-export default connect(mapStateToProps)(Dictionary)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getPacksFetch: () => dispatch(getPacksFetch())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dictionary)

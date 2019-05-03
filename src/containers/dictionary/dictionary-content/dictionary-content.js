@@ -7,7 +7,6 @@ const DictionaryContent = ({packs}) => {
     
     return (
         <div className={styles["dictionary-content"]}>
-          <Table words={packs[0].words} />
           <button className={styles["add-button"]}>Добавить слово</button>
         </div>
     )

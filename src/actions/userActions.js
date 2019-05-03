@@ -7,18 +7,17 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
-export function loginFail(bool) {
+export function loginFail() {
     return {
         type: LOGIN_FAIL,
-        isFail: bool
     };
 }
 
-export function loginRequest(bool) {
+export function loginRequest() {
     return {
         type: LOGIN_REQUEST,
-        isLoading: bool
     };
 }
 
@@ -31,32 +30,30 @@ export function loginSuccess(payload) {
 
 export function loginFetch(payload) {
     return (dispatch) => {
-        dispatch(loginRequest(true));
+        dispatch(loginRequest());
 
         payload = {user: payload}
 
         api.users.login(payload)
             .then((response) => {
-                dispatch(loginRequest(false));
+                dispatch(loginRequest());
 
                 return response;
             })
             .then((response) => dispatch(loginSuccess(response)))
-            .catch(() => dispatch(loginFail(true)));
+            .catch(() => dispatch(loginFail()));
     };
 }
 
-export function registerFail(bool) {
+export function registerFail() {
     return {
-        type: REGISTER_FAIL,
-        isFail: bool
+        type: REGISTER_FAIL
     };
 }
 
-export function registerRequest(bool) {
+export function registerRequest() {
     return {
-        type: REGISTER_REQUEST,
-        isLoading: bool
+        type: REGISTER_REQUEST
     };
 }
 
@@ -69,16 +66,22 @@ export function registerSuccess(payload) {
 
 export function registerFetch(payload) {
     return (dispatch) => {
-        dispatch(registerRequest(true));
+        dispatch(registerRequest());
         payload = {user: payload}
 
         api.users.register(payload)
             .then((response) => {
-                dispatch(registerRequest(false));
+                dispatch(registerRequest());
 
                 return response;
             })
             .then((response) => dispatch(registerSuccess(response)))
-            .catch(() => dispatch(registerFail(true)));
+            .catch(() => dispatch(registerFail()));
     };
+}
+
+export function userLogout() {
+    return {
+        type: USER_LOGOUT
+    }
 }
