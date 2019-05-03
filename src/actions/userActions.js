@@ -25,7 +25,7 @@ export function loginRequest(bool) {
 export function loginSuccess(payload) {
     return {
         type: LOGIN_SUCCESS,
-        payload
+        payload: payload.user
     };
 }
 
@@ -33,18 +33,15 @@ export function loginFetch(payload) {
     return (dispatch) => {
         dispatch(loginRequest(true));
 
+        payload = {user: payload}
+
         api.users.login(payload)
             .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-
                 dispatch(loginRequest(false));
 
                 return response;
             })
-            .then((response) => response.json())
-            .then((payload) => dispatch(loginSuccess(payload)))
+            .then((response) => dispatch(loginSuccess(response)))
             .catch(() => dispatch(loginFail(true)));
     };
 }
@@ -66,26 +63,22 @@ export function registerRequest(bool) {
 export function registerSuccess(payload) {
     return {
         type: REGISTER_SUCCESS,
-        payload
+        payload: payload.user
     };
 }
 
 export function registerFetch(payload) {
     return (dispatch) => {
         dispatch(registerRequest(true));
+        payload = {user: payload}
 
         api.users.register(payload)
             .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-
                 dispatch(registerRequest(false));
 
                 return response;
             })
-            .then((response) => response.json())
-            .then((payload) => dispatch(registerSuccess(payload)))
+            .then((response) => dispatch(registerSuccess(response)))
             .catch(() => dispatch(registerFail(true)));
     };
 }

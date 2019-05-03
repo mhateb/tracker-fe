@@ -26,6 +26,13 @@
 
 .sidebar-block-item {
   margin: 15px 0px 0px 50px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
   a {
     text-decoration: none;
     color: white;

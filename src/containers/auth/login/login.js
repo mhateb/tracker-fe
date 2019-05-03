@@ -2,19 +2,19 @@ import React, {memo} from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {loginFetch} from '../../../actions/userActions';
 
 import styles from '../auth.scss';
 
-const Login = ({history}) => {
+const Login = ({handleSubmit, loginFetch}) => {
   return (
     <div className={styles["form-container"]}>
-      <form>
+      <form onSubmit={handleSubmit(val => loginFetch(val))}>
         <div className={styles["form-field"]}>
-          <label htmlFor="username">Логин</label>
-          <Field name="username" component="input" type="text" required />
+          <label htmlFor="email">Логин</label>
+          <Field name="email" component="input" type="text" required />
         </div>
         <div className={styles["form-field"]}>
           <label htmlFor="password">Пароль</label>
@@ -31,7 +31,7 @@ const Login = ({history}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchLogin: (payload) => dispatch(loginFetch(payload))
+      loginFetch: (payload) => dispatch(loginFetch(payload))
   };
 };
 
@@ -46,7 +46,6 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  withRouter,
   memo,
   reduxForm({
     form: 'login-form'

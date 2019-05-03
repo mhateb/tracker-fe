@@ -1,7 +1,13 @@
 import React, { PureComponent } from "react";
 import { Link } from 'react-router-dom';
 
-import Logo from "../../../resources/icons/logo.svg";
+import Logo from '../../../resources/icons/logo.svg';
+import ProfileIcon from '../../../resources/icons/profile.svg';
+import NewsIcon from '../../../resources/icons/news.svg';
+import DictionaryIcon from '../../../resources/icons/dictionary.svg';
+import TrainingIcon from '../../../resources/icons/training.svg';
+import RatingIcon from '../../../resources/icons/rating.svg';
+import LogoutIcon from '../../../resources/icons/logout.svg';
 
 import styles from "./sidebar.scss";
 
@@ -12,13 +18,13 @@ class Sidebar extends PureComponent {
         id: 0,
         title: "Профиль",
         link: "/profile",
-        icon: ""
+        icon: <img src={ProfileIcon} />
       },
       {
         id: 1,
         title: "Новости",
-        link: "/announcment",
-        icon: ""
+        link: "/news",
+        icon: <img src={NewsIcon} />
       }
     ],
     dictionaryLinks: [
@@ -26,19 +32,19 @@ class Sidebar extends PureComponent {
         id: 3,
         title: "Словарь",
         link: "/dictionary",
-        icon: ""
+        icon: <img src={DictionaryIcon} />
       },
       {
         id: 4,
         title: "Упражнения",
         link: "/training",
-        icon: ""
+        icon: <img src={TrainingIcon} />
       },
       {
         id: 5,
         title: "Рейтинг",
         link: "/rating",
-        icon: ""
+        icon: <img src={RatingIcon} />
       }
     ]
   }
@@ -46,7 +52,9 @@ class Sidebar extends PureComponent {
   getProfileLinks = () => (
     this.state.profileLinks.map((item) => (
       <div className={styles["sidebar-block-item"]} key={item.id}>
-        <img/>
+        {
+          item.icon
+        }
         <Link to={item.link}>
           {item.title}
         </Link>
@@ -57,7 +65,9 @@ class Sidebar extends PureComponent {
   getDictionaryLinks = () => (
     this.state.dictionaryLinks.map((item) => (
       <div className={styles["sidebar-block-item"]} key={item.id}>
-        <img/>
+        {
+          item.icon
+        }
         <Link to={item.link}>
           {item.title}
         </Link>
@@ -83,6 +93,7 @@ class Sidebar extends PureComponent {
         </div>
         <div className={styles["sidebar-block"]}>
           <div className={styles["sidebar-block-item"]}>
+            <img src={LogoutIcon} />
             <Link to="/">
               Выйти
             </Link>

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Announcment = () => {
+const News = () => {
   return (
     <div>
       <h1>
-        Announcment
+        News
       </h1>
     </div>
   )
 }
 
-export default Announcment
+export default News

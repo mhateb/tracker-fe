@@ -1,17 +1,17 @@
 import React, {memo} from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
-import { Link, withRouter } from 'react-router-dom';
+import { Field, reduxForm, Form } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 import {registerFetch} from '../../../actions/userActions';
 
 import styles from '../auth.scss';
 
-const Register = ({history, fetchRegister, isSet}) => {
+const Register = ({registerFetch, handleSubmit}) => {
   return (
     <div className={styles["form-container"]}>
-      <form>
+      <Form onSubmit={handleSubmit(val => registerFetch(val))}>
         <div className={styles["form-field"]}>
           <label htmlFor="username">Логин</label>
           <Field name="username" component="input" type="text" required />
@@ -29,17 +29,17 @@ const Register = ({history, fetchRegister, isSet}) => {
           <Field name="confirmation" component="input" type="password" required />
         </div>
         <div className={styles["form-submit"]}>
-          <button onClick={fetchRegister()} type="submit">Войти</button>
+          <button type="submit" label="submit">Войти</button>
           <span>Уже зарегистрированы? <Link to="/login">Войти</Link></span>
         </div>
-      </form>
+      </Form>
     </div>
   )
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchRegister: (payload) => dispatch(registerFetch(payload))
+      registerFetch: (payload) => dispatch(registerFetch(payload))
   };
 };
 
@@ -54,7 +54,6 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  withRouter,
   memo,
   reduxForm({
     form: 'register-form'
