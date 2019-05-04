@@ -17,7 +17,7 @@ const DictionaryContent = ({selectedPack}) => {
             <button><img src={DeleteIcon} alt="Delete"/></button>
           </header>
           {
-            selectedPack.words ? (
+            selectedPack.words.length > 0 ? (
               null
             ) : (
               <div className={styles["content-empty"]}>

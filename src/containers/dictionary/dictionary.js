@@ -48,7 +48,6 @@ class Dictionary extends React.PureComponent {
               />
               <DictionaryContent 
                 selectedPack={selectedPack}
-                getWordsRequest={getWordsRequest}
               />
             </section>
           ) : (
@@ -77,7 +76,6 @@ const mapDispatchToProps = (dispatch) => {
       getPacksRequest: () => dispatch(getPacksRequest()),
       addNewPackRequest: (payload) => dispatch(addNewPackRequest(payload)),
       setPack: (event) => dispatch(setPack(event.target.value)),
-      getWordsRequest: (payload) => dispatch(getWordsRequest(payload))
   };
 };
 

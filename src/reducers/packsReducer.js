@@ -33,7 +33,7 @@ export function packsReducer(state = initialState, action) {
                 isFail: false,
                 isSet: true,
                 items: action.payload,
-                selectedPack: action.payload[0] || null, 
+                selectedPack: action.payload.length > 0 ? {...action.payload, words: []} : null, // Странный костыль, но он нужен
                 isAnyPacks: action.payload.length > 0
             }
 
@@ -91,6 +91,7 @@ export function packsReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 isFail: false,
+                selectedPack: {...state.selectedPack, words: action.payload},
                 items: state.items.map(item => item.id == state.selectedPack.id 
                     ? {...item, words: action.payload}
                     : item
