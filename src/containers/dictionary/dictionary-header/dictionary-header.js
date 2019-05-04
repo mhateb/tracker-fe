@@ -6,15 +6,11 @@ import AddIcon from '../../../../resources/icons/add.svg';
 
 import styles from './dictionary-header.scss';
 
-const DictionaryHeader = ({packs, addNewPackFetch, selectedPack, handleSubmit}) => {
+const DictionaryHeader = ({packs, addNewPackRequest, selectedPack, handleSubmit, setPack}) => {
 
     const getOptions = (packs) => (
         packs.map(item => {
-            if (item.id === selectedPack.id) {
-                return <option selected key={item.id}>{item.title}</option>
-            }
-
-            return <option key={item.id}>{item.title}</option>
+            return <option value={item.id} key={item.id}>{item.title}</option>
         })
     )
 
@@ -26,14 +22,14 @@ const DictionaryHeader = ({packs, addNewPackFetch, selectedPack, handleSubmit}) 
           <div className={styles.actions}>
             <div className={styles["pack-select"]}>
                 <label htmlFor="packname">Коллекция:</label>
-                <select name="packname">
+                <select name="packname" onChange={setPack} value={selectedPack.id}>
                 {
                     getOptions(packs)
                 }
                 </select>
             </div>
             <div className={styles["add-pack"]}>
-                <form onSubmit={handleSubmit(val => addNewPackFetch(val))}>
+                <form onSubmit={handleSubmit(val => addNewPackRequest(val))}>
                     <label htmlFor="title">Добавить коллекцию</label>
                     <Field name="title" component="input" type="text" placeholder="Название коллекции" required />
                     <button type="submit">

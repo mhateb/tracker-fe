@@ -1,11 +1,44 @@
 .dictionary-content {
-    padding: 50px 100px;
+    padding: 50px 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    & > header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: flex-start;
+
+        & > span {
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        & > button {
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin-right: 15px;
+
+            & > img {
+                width: 25px;
+                height: 32px;
+            }
+
+            &:hover {
+                background-color: rgb(241, 241, 241);
+                border-radius: 100%;
+            }
+        }
+    }
 }
 
 .add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     width: 250px;
     height: 55px;
@@ -16,4 +49,22 @@
     margin-top: 40px;
     background-color: white;
     outline: none;
+
+    & > img {
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+    }
+}
+
+.content-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+    & > span {
+        font-size: 20px;
+    }
 }

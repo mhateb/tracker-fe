@@ -1,0 +1,1 @@
+export const getPack = (state, id) => state.packs.items.find(item => item.id == id)

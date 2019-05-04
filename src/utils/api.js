@@ -38,7 +38,7 @@ const api = {
     },
     words: {
         new: (makeRequest({url: '/words'})),
-        all: (makeRequest({url: '/words/all', type: 'get'})),
+        all: (makeRequest({url: '/words/all'})),
         delete: (makeRequest({url: '/words/delete'})),
         update: (makeRequest({url: '/words/update'}))
     }
