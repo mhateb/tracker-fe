@@ -20,6 +20,7 @@ const initialState = {
 export function packsReducer(state = initialState, action) {
     switch (action.type) {
         case GET_PACKS_SUCCESS:
+            console.log(action.payload)
             return { 
                 ...state,
                 loading: false,
@@ -27,7 +28,7 @@ export function packsReducer(state = initialState, action) {
                 isSet: true,
                 items: action.payload,
                 selectedPack: action.payload[0] || null,
-                isAnyPacks: !!action.payload
+                isAnyPacks: action.payload.length > 0
             }
 
         case GET_PACKS_REQUEST:

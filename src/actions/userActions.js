@@ -1,6 +1,4 @@
 // @flow
-import api from '../utils/api';
-
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
@@ -15,9 +13,10 @@ export function loginFail() {
     };
 }
 
-export function loginRequest() {
+export function loginRequest(payload) {
     return {
         type: LOGIN_REQUEST,
+        payload: payload
     };
 }
 
@@ -28,27 +27,16 @@ export function loginSuccess(payload) {
     };
 }
 
-export function loginFetch(payload) {
-    return (dispatch) => {
-        dispatch(loginRequest());
-
-        payload = {user: payload}
-
-        api.users.login(payload)
-            .then((response) => dispatch(loginSuccess(response)))
-            .catch(() => dispatch(loginFail()));
-    };
-}
-
 export function registerFail() {
     return {
         type: REGISTER_FAIL
     };
 }
 
-export function registerRequest() {
+export function registerRequest(payload) {
     return {
-        type: REGISTER_REQUEST
+        type: REGISTER_REQUEST,
+        payload: payload
     };
 }
 
@@ -56,17 +44,6 @@ export function registerSuccess(payload) {
     return {
         type: REGISTER_SUCCESS,
         payload: payload.user
-    };
-}
-
-export function registerFetch(payload) {
-    return (dispatch) => {
-        dispatch(registerRequest());
-        payload = {user: payload}
-
-        api.users.register(payload)
-            .then((response) => dispatch(registerSuccess(response)))
-            .catch(() => dispatch(registerFail()));
     };
 }
 

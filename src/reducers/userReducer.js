@@ -29,7 +29,7 @@ export function userReducer(state = initialState, action) {
       return { 
         ...state,
         loading: false,
-        username: action.payload.username, 
+        username: action.payload.email, 
         token: action.payload.token,
         isSet: true,
         isFail: false

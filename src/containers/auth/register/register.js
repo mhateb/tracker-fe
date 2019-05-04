@@ -4,16 +4,16 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-import {registerFetch} from '../../../actions/userActions';
+import {registerRequest} from '../../../actions/userActions';
 import Loader from '../../../components/loader/loader';
 
 import styles from '../auth.scss';
 
-const Register = ({registerFetch, handleSubmit, loading}) => {
+const Register = ({registerRequest, handleSubmit, loading}) => {
   return (
     <Loader isLoading={loading}>
       <div className={styles["form-container"]}>
-        <form onSubmit={handleSubmit(val => registerFetch(val))}>
+        <form onSubmit={handleSubmit(val => registerRequest(val))}>
           <div className={styles["form-field"]}>
             <label htmlFor="username">Логин</label>
             <Field name="username" component="input" type="text" required />
@@ -42,7 +42,7 @@ const Register = ({registerFetch, handleSubmit, loading}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      registerFetch: (payload) => dispatch(registerFetch(payload))
+      registerRequest: (payload) => dispatch(registerRequest(payload))
   };
 };
 

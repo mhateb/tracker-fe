@@ -4,16 +4,16 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-import {loginFetch} from '../../../actions/userActions';
+import {loginRequest} from '../../../actions/userActions';
 import Loader from '../../../components/loader/loader';
 
 import styles from '../auth.scss';
 
-const Login = ({handleSubmit, loginFetch, loading}) => {
+const Login = ({handleSubmit, loginRequest, loading}) => {
   return (
     <Loader isLoading={loading}>
       <div className={styles["form-container"]}>
-        <form onSubmit={handleSubmit(val => loginFetch(val))}>
+        <form onSubmit={handleSubmit(val => loginRequest(val))}>
           <div className={styles["form-field"]}>
             <label htmlFor="email">Логин</label>
             <Field name="email" component="input" type="text" required />
@@ -34,7 +34,7 @@ const Login = ({handleSubmit, loginFetch, loading}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      loginFetch: (payload) => dispatch(loginFetch(payload))
+      loginRequest: (payload) => dispatch(loginRequest(payload))
   };
 };
 

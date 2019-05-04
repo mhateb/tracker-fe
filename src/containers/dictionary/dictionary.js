@@ -11,9 +11,11 @@ import styles from './dictionary.scss';
 
 class Dictionary extends React.PureComponent {
   componentDidMount() {
-    const {getPacksFetch} = this.props
+    const {getPacksFetch, isSet} = this.props
 
-    getPacksFetch()
+    if(!isSet) {
+      getPacksFetch()
+    }
   }
 
   render () {
@@ -43,7 +45,8 @@ function mapStateToProps(state) {
     selectedPack: packs.selectedPack,
     isAnyPacks: packs.isAnyPacks,
     packs: packs.items,
-    loading: packs.loading
+    loading: packs.loading,
+    isSet: packs.isSet
   }
 }
 
