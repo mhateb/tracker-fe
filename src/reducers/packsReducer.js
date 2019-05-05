@@ -6,6 +6,9 @@ import {
     ADD_NEW_PACK_REQUEST,
     ADD_NEW_PACK_SUCCESS,
     ADD_NEW_PACK_FAIL,
+    REMOVE_PACK_REQUEST,
+    REMOVE_PACK_SUCCESS,
+    REMOVE_PACK_FAIL,
     SET_PACK,
     GET_WORDS_REQUEST,
     GET_WORDS_SUCCESS,
@@ -32,8 +35,8 @@ export function packsReducer(state = initialState, action) {
                 loading: false,
                 isFail: false,
                 isSet: true,
-                items: action.payload,
-                selectedPack: action.payload.length > 0 ? {...action.payload, words: []} : null, // Странный костыль, но он нужен
+                items: action.payload.map(item => { return {...item, words: [], isSetWords: false} }),
+                selectedPack: {...action.payload[0], words: [], isSetWords: false} || {},
                 isAnyPacks: action.payload.length > 0
             }
 
@@ -64,7 +67,8 @@ export function packsReducer(state = initialState, action) {
                 loading: false,
                 selectedPack: payload,
                 isFail: false,
-                items: [...state.items, payload]
+                items: [...state.items, payload],
+                isAnyPacks: true
             }    
 
         case ADD_NEW_PACK_FAIL:
@@ -73,11 +77,36 @@ export function packsReducer(state = initialState, action) {
                 loading: false,
                 isFail: true
             }   
+
+        case REMOVE_PACK_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }   
+            
+        case REMOVE_PACK_SUCCESS: 
+            const filtered = state.items.filter(item => item.id != action.payload.id)
+            
+            return {
+                ...state,
+                loading: false,
+                isFail: false,
+                items: filtered,
+                isAnyPacks: filtered.length > 0,
+            }
+          
+        case REMOVE_PACK_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                isFail: true
+            }
+        }    
             
         case SET_PACK: 
             return {
                 ...state,
-                selectedPack: state.items.find(item => item.id == action.payload)
+                selectedPack: state.items.find(item => item.id == action.payload) || null
             }    
 
         case GET_WORDS_REQUEST:
@@ -91,11 +120,11 @@ export function packsReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 isFail: false,
-                selectedPack: {...state.selectedPack, words: action.payload},
                 items: state.items.map(item => item.id == state.selectedPack.id 
-                    ? {...item, words: action.payload}
+                    ? {...item, words: action.payload, isSetWords: true}
                     : item
-                    )
+                ),
+                selectedPack: {...state.selectedPack, words: action.payload, isSetWords: true}
             }   
             
         case GET_WORDS_FAIL: 
@@ -116,6 +145,11 @@ export function packsReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 isFail: false,
+                items: state.items.map(item => item.id == state.selectedPack.id 
+                    ? {...item, words: [...item.words, action.payload]}
+                    : item
+                    ),
+                selectedPack: {...state.selectedPack, words: [...state.selectedPack.words, action.payload]}   
             }    
 
         case ADD_NEW_WORD_FAIL:

@@ -1,6 +1,6 @@
-import {put, call, all, takeLatest, takeEvery, select, take} from 'redux-saga/effects';
+import {put, call, all, takeLatest, takeEvery, select} from 'redux-saga/effects';
 
-import {getPack} from './selectors';
+import {getPack, getSelectedPack, getAllPacks} from './selectors';
 import api from '../utils/api';
 
 export default function* packsSaga() {
@@ -9,15 +9,32 @@ export default function* packsSaga() {
     takeEvery("ADD_NEW_PACK_REQUEST", fetchAddNewPack),
     takeEvery("GET_WORDS_REQUEST", fetchGetWords),
     takeEvery("ADD_NEW_WORD_REQUEST", fetchAddNewWord),
-    takeLatest("SET_PACK", setWordsToPack)
+    takeLatest("SET_PACK", setWordsToPack),
+    takeEvery("REMOVE_PACK_REQUEST", fetchRemovePack)
   ]);
 }
 
 function* setWordsToPack(action) {
     const pack = yield select(getPack, action.payload)
-    if (!pack.words) {
+    if (pack && !pack.isSetWords) {
         yield put({type: "GET_WORDS_REQUEST", payload: pack})
     } 
+}
+
+function* fetchRemovePack(action) {
+    try {
+        const payload = { pack: action.payload }
+        yield call(api.packs.delete, payload, false, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+        yield put({type: "REMOVE_PACK_SUCCESS", payload: action.payload})
+        const allPacks = yield select(getAllPacks)
+        if (allPacks.length > 0) {
+            yield put({type: "SET_PACK", payload: allPacks[0].id})
+        } else {
+            yield put({type: "SET_PACK", payload: null})
+        }
+    } catch(e) {
+        yield put({type: "REMOVE_PACK_FAIL"})
+    }
 }
 
 function* fetchGetPacks() {
@@ -25,8 +42,10 @@ function* fetchGetPacks() {
         const response = yield call(api.packs.all, false, false, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
 
         yield put({type: "GET_PACKS_SUCCESS", payload: response.packs})
-        yield put({type: "GET_WORDS_REQUEST", payload: response.packs[0]})
-        yield put({type: "SET_PACK", payload: response.packs[0].id})
+
+        if (response.packs.length > 0) {
+            yield put({type: "SET_PACK", payload: response.packs[0].id})
+        }
     } catch (e) {
         yield put({type: "GET_PACKS_FAIL"});
     }
@@ -60,7 +79,8 @@ function* fetchGetWords(action) {
 }
 
 function* fetchAddNewWord(action) {
-    const payload = { word: action.payload }
+    const selectedPack = yield select(getSelectedPack)
+    const payload = { word: { ...action.payload, pack_id: selectedPack.id } }
 
     try {
         const response = yield call(api.words.new, payload, false, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}})

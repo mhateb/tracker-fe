@@ -9,7 +9,8 @@ import {
   getPacksRequest, 
   addNewPackRequest, 
   setPack,
-  getWordsRequest
+  addNewWordRequest,
+  removePackRequest
 } from '../../actions/packsActions';
 
 import styles from './dictionary.scss';
@@ -32,7 +33,8 @@ class Dictionary extends React.PureComponent {
       isAnyPacks, 
       addNewPackRequest, 
       setPack,
-      getWordsRequest 
+      addNewWordRequest,
+      removePackRequest
     } = this.props
 
     return (
@@ -48,10 +50,14 @@ class Dictionary extends React.PureComponent {
               />
               <DictionaryContent 
                 selectedPack={selectedPack}
+                addNewWordRequest={addNewWordRequest}
+                removePackRequest={removePackRequest}
               />
             </section>
           ) : (
-            <DictionaryEmpty />
+            <DictionaryEmpty 
+              addNewPackRequest={addNewPackRequest}
+            />
           )
         }
       </Loader>
@@ -76,6 +82,8 @@ const mapDispatchToProps = (dispatch) => {
       getPacksRequest: () => dispatch(getPacksRequest()),
       addNewPackRequest: (payload) => dispatch(addNewPackRequest(payload)),
       setPack: (event) => dispatch(setPack(event.target.value)),
+      addNewWordRequest: (payload) => dispatch(addNewWordRequest(payload)),
+      removePackRequest: (payload) => dispatch(removePackRequest(payload))
   };
 };
 

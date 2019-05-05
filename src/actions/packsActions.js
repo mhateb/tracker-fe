@@ -1,12 +1,13 @@
 // @flow
-import api from '../utils/api';
-
 export const GET_PACKS_REQUEST = 'GET_PACKS_REQUEST';
 export const GET_PACKS_SUCCESS = 'GET_PACKS_SUCCESS';
 export const GET_PACKS_FAIL = 'GET_PACKS_FAIL';
 export const ADD_NEW_PACK_REQUEST = 'ADD_NEW_PACK_REQUEST';
 export const ADD_NEW_PACK_SUCCESS = 'ADD_NEW_PACK_SUCCESS';
 export const ADD_NEW_PACK_FAIL = 'ADD_NEW_PACK_FAIL';
+export const REMOVE_PACK_REQUEST = 'REMOVE_PACK_REQUEST';
+export const REMOVE_PACK_SUCCESS = 'REMOVE_PACK_SUCCESS';
+export const REMOVE_PACK_FAIL = 'REMOVE_PACK_FAIL';
 export const SET_PACK = 'SET_PACK';
 export const GET_WORDS_REQUEST = 'GET_WORDS_REQUEST';
 export const GET_WORDS_SUCCESS = 'GET_WORDS_SUCCESS';
@@ -45,6 +46,13 @@ export function getWordsRequest(payload) {
 export function addNewWordRequest(payload) {
     return {
         type: ADD_NEW_WORD_REQUEST,
+        payload: payload
+    }
+}
+
+export function removePackRequest(payload) {
+    return {
+        type: REMOVE_PACK_REQUEST,
         payload: payload
     }
 }

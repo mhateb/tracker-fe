@@ -22,7 +22,7 @@ const DictionaryHeader = ({packs, addNewPackRequest, selectedPack, handleSubmit,
           <div className={styles.actions}>
             <div className={styles["pack-select"]}>
                 <label htmlFor="packname">Коллекция:</label>
-                <select name="packname" onChange={setPack} value={selectedPack.id}>
+                <select name="packname" onChange={setPack} value={selectedPack.id || null}>
                 {
                     getOptions(packs)
                 }
