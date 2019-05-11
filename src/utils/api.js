@@ -20,7 +20,7 @@ const makeRequest = ({url, type = 'post', baseURL = 'http://localhost:5000/api/v
         resolve(response.data);
       })
       .catch((error) => {
-        reject(error);
+        reject(error.response);
       });
   });
 

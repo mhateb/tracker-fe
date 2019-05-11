@@ -4,15 +4,24 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-import {loginRequest} from '../../../actions/userActions';
-import Wrapper from '../../../components/wrapper/wrapper';
+import {loginRequest} from 'actions/userActions';
+import Wrapper from 'components/wrapper/wrapper';
 
 import styles from '../auth.scss';
 
-const Login = ({handleSubmit, loginRequest, loading, isFail}) => {
+const Login = ({handleSubmit, loginRequest, loading, isFail, textError}) => {
   return (
     <Wrapper isLoading={loading} isFail={isFail}>
       <div className={styles["form-container"]}>
+        {
+          textError !== '' ? (
+            <div className={styles.error}>
+              <p>{textError}</p>
+            </div>
+          ) : (
+            null
+          )
+        }
         <form onSubmit={handleSubmit(val => loginRequest(val))}>
           <div className={styles["form-field"]}>
             <label htmlFor="email">Логин</label>
@@ -42,7 +51,8 @@ const mapStateToProps = (state) => {
   return {
       isSet: state.user.isSet,
       loading: state.user.loading,
-      isFail: state.user.isFail
+      isFail: state.user.isFail,
+      textError: state.user.textError
   };
 };
 

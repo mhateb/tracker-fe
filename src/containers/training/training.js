@@ -1,16 +1,15 @@
 import React, {memo} from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux'
 
 import TrainingHeader from './training-header/training-header';
-import GamesList from './games-list/games-list';
 
 import styles from './training.scss';
 
-const Training = ({packs}) => {
+const Training = ({packs, selectedPack, setPack}) => {
   return (
     <section className={styles["training-container"]}>
-      <TrainingHeader packs={packs} />
-      <GamesList />
+      <TrainingHeader packs={packs} selectedPack={selectedPack} setPack={setPack} />
     </section>
   )
 };
@@ -24,4 +23,16 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, memo)(Training)
+const mapDispatchToProps = (dispatch) => {
+  return {
+      setPack: (event) => dispatch(setPack(event.target.value)),
+  };
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  memo
+)(Training)

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loading from '../../../resources/loading.gif';
+import Loading from 'resources/loading.gif';
 
 import styles from './wrapper.scss';
 

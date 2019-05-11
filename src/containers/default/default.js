@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import Sidebar from '../sidebar/sidebar';
+import Sidebar from 'containers/sidebar/sidebar';
 
 import styles from './default.scss';
 

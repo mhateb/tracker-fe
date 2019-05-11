@@ -4,8 +4,8 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
-import {registerRequest} from '../../../actions/userActions';
-import Wrapper from '../../../components/wrapper/wrapper';
+import {registerRequest} from 'actions/userActions';
+import Wrapper from 'components/wrapper/wrapper';
 
 import styles from '../auth.scss';
 

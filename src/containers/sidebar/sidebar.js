@@ -2,14 +2,14 @@ import React, { PureComponent } from "react";
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Logo from '../../../resources/icons/logo.svg';
-import ProfileIcon from '../../../resources/icons/profile.svg';
-import NewsIcon from '../../../resources/icons/news.svg';
-import DictionaryIcon from '../../../resources/icons/dictionary.svg';
-import TrainingIcon from '../../../resources/icons/training.svg';
-import RatingIcon from '../../../resources/icons/rating.svg';
-import LogoutIcon from '../../../resources/icons/logout.svg';
-import { userLogout } from '../../actions/userActions';
+import Logo from 'resources/icons/logo.svg';
+import ProfileIcon from 'resources/icons/profile.svg';
+import NewsIcon from 'resources/icons/news.svg';
+import DictionaryIcon from 'resources/icons/dictionary.svg';
+import TrainingIcon from 'resources/icons/training.svg';
+import RatingIcon from 'resources/icons/rating.svg';
+import LogoutIcon from 'resources/icons/logout.svg';
+import { userLogout } from 'actions/userActions';
 
 import styles from "./sidebar.scss";
 

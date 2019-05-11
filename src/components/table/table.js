@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import DeleteIcon from '../../../resources/icons/delete.svg';
+import DeleteIcon from 'resources/icons/delete.svg';
 
 import styles from './table.scss';
 

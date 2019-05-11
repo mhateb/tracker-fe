@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import TickIcon from '../../../../../resources/icons/tick.svg';
+import TickIcon from 'resources/icons/tick.svg';
 
 import styles from '../dictionary-content.scss';
 

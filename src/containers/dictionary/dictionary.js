@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import DictionaryHeader from './dictionary-header/dictionary-header';
 import DictionaryContent from './dictionary-content/dictionary-content';
 import DictionaryEmpty from './dictionary-empty/dictionary-empty';
-import Wrapper from '../../components/wrapper/wrapper';
+import Wrapper from 'components/wrapper/wrapper';
 import {
   getPacksRequest, 
   addNewPackRequest, 
@@ -13,7 +13,7 @@ import {
   removePackRequest,
   updatePackRequest,
   removeWordRequest
-} from '../../actions/packsActions';
+} from 'actions/packsActions';
 
 import styles from './dictionary.scss';
 

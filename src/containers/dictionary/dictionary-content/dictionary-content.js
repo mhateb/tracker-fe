@@ -1,10 +1,10 @@
 import React, {memo, useState} from 'react';
 import { compose } from 'redux';
 
-import Table from '../../../components/table/table';
-import EditIcon from '../../../../resources/icons/edit.svg';
-import DeleteIcon from '../../../../resources/icons/delete.svg';
-import AddIcon from '../../../../resources/icons/add.svg'
+import Table from 'components/table/table';
+import EditIcon from 'resources/icons/edit.svg';
+import DeleteIcon from 'resources/icons/delete.svg';
+import AddIcon from 'resources/icons/add.svg'
 import AddWordForm from './forms/add-word-form';
 import UpdatePackForm from './forms/update-pack-form';
 

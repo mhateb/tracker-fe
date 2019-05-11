@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AvatarIcon from '../../../resources/icons/avatar.svg';
+import AvatarIcon from 'resources/icons/avatar.svg';
 
 import styles from './profile.scss';
 

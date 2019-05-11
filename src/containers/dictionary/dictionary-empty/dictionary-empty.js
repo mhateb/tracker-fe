@@ -2,7 +2,7 @@ import React, {memo, useState} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
 
-import AddIcon from '../../../../resources/icons/add.svg';
+import AddIcon from 'resources/icons/add.svg';
 
 import styles from './dictionary-empty.scss';
 

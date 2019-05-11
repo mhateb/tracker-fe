@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import AddIcon from '../../../../../resources/icons/add.svg';
+import AddIcon from 'resources/icons/add.svg';
 import styles from '../dictionary-content.scss';
 
 const AddWordForm = ({handleSubmit, addNewWordRequest}) => {

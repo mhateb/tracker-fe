@@ -15,8 +15,12 @@ function* fetchLogin(action) {
     try {
         const response = yield call(api.users.login, payload);
         yield put({type: "LOGIN_SUCCESS", payload: response.user});
-    } catch (e) {
-        yield put({type: "LOGIN_FAIL"});
+    } catch (error) {
+        if (error.status === 401) {
+            yield put({type: "USER_NOT_FOUND"})
+        } else {
+            yield put({type: "LOGIN_FAIL"});
+        }
     }
 }
 

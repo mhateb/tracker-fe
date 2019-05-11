@@ -1,17 +1,17 @@
 import React  from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
-import NotFound from '../../components/not-found/not-found';
-import Profile from '../profile/profile';
-import News from '../news/news';
-import Dictionary from '../dictionary/dictionary';
-import Training from '../training/training';
-import Rating from '../rating/rating';
-import Login from '../auth/login/login';
-import Register from '../auth/register/register';
-import Forgot from '../auth/forgot/forgot';
-import Default from '../default/default';
-import Landing from '../landing/landing';
+import NotFound from 'components/not-found/not-found';
+import Profile from 'containers/profile/profile';
+import News from 'containers/news/news';
+import Dictionary from 'containers/dictionary/dictionary';
+import Training from 'containers/training/training';
+import Rating from 'containers/rating/rating';
+import Login from 'containers/auth/login/login';
+import Register from 'containers/auth/register/register';
+import Forgot from 'containers/auth/forgot/forgot';
+import Default from 'containers/default/default';
+import Landing from 'containers/landing/landing';
 import PrivateRoute from './private-route';
 import AuthRoute from './auth-route';
 
