@@ -1,16 +1,18 @@
 import React, {memo, useState} from 'react';
-import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
 
 import Table from '../../../components/table/table';
 import EditIcon from '../../../../resources/icons/edit.svg';
 import DeleteIcon from '../../../../resources/icons/delete.svg';
 import AddIcon from '../../../../resources/icons/add.svg'
+import AddWordForm from './forms/add-word-form';
+import UpdatePackForm from './forms/update-pack-form';
 
 import styles from './dictionary-content.scss';
 
-const DictionaryContent = ({selectedPack, addNewWordRequest, handleSubmit, removePackRequest}) => {
+const DictionaryContent = ({selectedPack, addNewWordRequest, removePackRequest, updatePackRequest}) => {
     const [isEdit, setIsEdit] = useState(false)
+    const [isUpdatePack, setIsUpdatePack] = useState(false)
 
     const handleAddClick = () => {
       setIsEdit(true)
@@ -20,11 +22,28 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, handleSubmit, remov
       removePackRequest(selectedPack)
     }
 
+    const handleUpdateClick = () => {
+      setIsUpdatePack(true)
+    }
+
     return (
         <div className={styles["dictionary-content"]}>
           <header>
-            <span>{selectedPack.title}</span>
-            <button><img src={EditIcon} alt="Edit"/></button>
+            {
+              isUpdatePack ? (
+                <UpdatePackForm 
+                  updatePackRequest={updatePackRequest} 
+                  selectedPack={selectedPack} 
+                  initialValues={selectedPack} 
+                  setIsUpdatePack={setIsUpdatePack} 
+                />
+              ) : (
+                <>
+                  <span>{selectedPack.title}</span>
+                  <button onClick={handleUpdateClick}><img src={EditIcon} alt="Edit"/></button>
+                </>
+              )   
+            }
             <button onClick={handleRemoveClick}><img src={DeleteIcon} alt="Delete"/></button>
           </header>
           {
@@ -33,13 +52,7 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, handleSubmit, remov
                 <Table words={selectedPack.words} />
                 {
                   isEdit ? (
-                    <form className={styles["inputs-word"]}>
-                      <Field name="original" component="input" type="text" placeholder="Слово" required />
-                      <Field name="translate" component="input" type="text" placeholder="Перевод" required />
-                      <button type="submit" onClick={handleSubmit((val) => addNewWordRequest(val))}>
-                        <img src={AddIcon} />
-                      </button>
-                    </form>
+                    <AddWordForm addNewWordRequest={addNewWordRequest} />
                   ) : (
                     <button onClick={handleAddClick} className={styles["add-button"]}>
                       <img src={AddIcon} />
@@ -53,13 +66,7 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, handleSubmit, remov
                 <span>У вас пока нет слов в этой коллекции.</span>
                 {
                   isEdit ? (
-                    <form className={styles["inputs-word"]}>
-                      <Field name="original" component="input" type="text" placeholder="Слово" required />
-                      <Field name="translate" component="input" type="text" placeholder="Перевод" required />
-                      <button type="submit" onClick={handleSubmit((val) => addNewWordRequest(val))}>
-                        <img src={AddIcon} />
-                      </button>
-                    </form>
+                    <AddWordForm addNewWordRequest={addNewWordRequest} />
                   ) : (
                     <button onClick={handleAddClick} className={styles["add-button"]}>
                       <img src={AddIcon} />
@@ -75,8 +82,5 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, handleSubmit, remov
 }
 
 export default compose(
-  memo,
-  reduxForm({
-    form: 'add-new-word-form'
-  })
+  memo
 )(DictionaryContent)

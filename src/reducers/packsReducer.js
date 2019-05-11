@@ -15,7 +15,10 @@ import {
     GET_WORDS_FAIL,
     ADD_NEW_WORD_REQUEST,
     ADD_NEW_WORD_SUCCESS,
-    ADD_NEW_WORD_FAIL
+    ADD_NEW_WORD_FAIL,
+    UPDATE_PACK_REQUEST,
+    UPDATE_PACK_SUCCESS,
+    UPDATE_PACK_FAIL
   } from '../actions/packsActions'
 
 const initialState = {
@@ -102,6 +105,35 @@ export function packsReducer(state = initialState, action) {
                 isFail: true
             }
         }    
+
+        case UPDATE_PACK_REQUEST: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case UPDATE_PACK_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                isFail: false,
+                items: state.items.map((item => (
+                    item.id == action.payload.id 
+                        ? {...item, title: action.payload.title}
+                        : item
+                ))),
+                selectedPack: {...state.selectedPack, title: action.payload.title}
+            }
+        }
+
+        case UPDATE_PACK_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                isFail: true
+            }
+        }
             
         case SET_PACK: 
             return {

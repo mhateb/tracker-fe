@@ -10,7 +10,8 @@ export default function* packsSaga() {
     takeEvery("GET_WORDS_REQUEST", fetchGetWords),
     takeEvery("ADD_NEW_WORD_REQUEST", fetchAddNewWord),
     takeLatest("SET_PACK", setWordsToPack),
-    takeEvery("REMOVE_PACK_REQUEST", fetchRemovePack)
+    takeEvery("REMOVE_PACK_REQUEST", fetchRemovePack),
+    takeEvery("UPDATE_PACK_REQUEST", fetchUpdatePack)
   ]);
 }
 
@@ -19,6 +20,17 @@ function* setWordsToPack(action) {
     if (pack && !pack.isSetWords) {
         yield put({type: "GET_WORDS_REQUEST", payload: pack})
     } 
+}
+
+function* fetchUpdatePack(action) {
+    const payload = { pack: action.payload }
+
+    try {
+        yield call(api.packs.update, payload, false, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+        yield put({type: "UPDATE_PACK_SUCCESS", payload: payload.pack})
+    } catch(e) {
+        yield put({type: "UPDATE_PACK_FAIL"})
+    }
 }
 
 function* fetchRemovePack(action) {

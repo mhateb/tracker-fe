@@ -8,6 +8,9 @@ export const ADD_NEW_PACK_FAIL = 'ADD_NEW_PACK_FAIL';
 export const REMOVE_PACK_REQUEST = 'REMOVE_PACK_REQUEST';
 export const REMOVE_PACK_SUCCESS = 'REMOVE_PACK_SUCCESS';
 export const REMOVE_PACK_FAIL = 'REMOVE_PACK_FAIL';
+export const UPDATE_PACK_REQUEST = 'UPDATE_PACK_REQUEST';
+export const UPDATE_PACK_SUCCESS = 'UPDATE_PACK_SUCCESS';
+export const UPDATE_PACK_FAIL = 'UPDATE_PACK_FAIL';
 export const SET_PACK = 'SET_PACK';
 export const GET_WORDS_REQUEST = 'GET_WORDS_REQUEST';
 export const GET_WORDS_SUCCESS = 'GET_WORDS_SUCCESS';
@@ -53,6 +56,13 @@ export function addNewWordRequest(payload) {
 export function removePackRequest(payload) {
     return {
         type: REMOVE_PACK_REQUEST,
+        payload: payload
+    }
+}
+
+export function updatePackRequest(payload) {
+    return {
+        type: UPDATE_PACK_REQUEST,
         payload: payload
     }
 }
