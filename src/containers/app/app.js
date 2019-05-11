@@ -1,7 +1,7 @@
 import React  from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
-import NotFound from '../../components/notFound/notFound';
+import NotFound from '../../components/not-found/not-found';
 import Profile from '../profile/profile';
 import News from '../news/news';
 import Dictionary from '../dictionary/dictionary';

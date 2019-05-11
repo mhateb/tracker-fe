@@ -10,7 +10,7 @@ import UpdatePackForm from './forms/update-pack-form';
 
 import styles from './dictionary-content.scss';
 
-const DictionaryContent = ({selectedPack, addNewWordRequest, removePackRequest, updatePackRequest}) => {
+const DictionaryContent = ({selectedPack, addNewWordRequest, removePackRequest, updatePackRequest, removeWordRequest}) => {
     const [isEdit, setIsEdit] = useState(false)
     const [isUpdatePack, setIsUpdatePack] = useState(false)
 
@@ -49,7 +49,7 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, removePackRequest, 
           {
             selectedPack.words.length > 0 ? (
               <>
-                <Table words={selectedPack.words} />
+                <Table words={selectedPack.words} removeWordRequest={removeWordRequest}/>
                 {
                   isEdit ? (
                     <AddWordForm addNewWordRequest={addNewWordRequest} />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './notFound.scss';
+import styles from './not-found.scss';
 
 const NotFound = () => (
   <div>

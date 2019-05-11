@@ -18,7 +18,10 @@ import {
     ADD_NEW_WORD_FAIL,
     UPDATE_PACK_REQUEST,
     UPDATE_PACK_SUCCESS,
-    UPDATE_PACK_FAIL
+    UPDATE_PACK_FAIL,
+    REMOVE_WORD_REQUEST,
+    REMOVE_WORD_SUCCESS,
+    REMOVE_WORD_FAIL
   } from '../actions/packsActions'
 
 const initialState = {
@@ -190,7 +193,32 @@ export function packsReducer(state = initialState, action) {
                 loading: false,
                 isFail: true
             }
+
+        case REMOVE_WORD_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }    
             
+        case REMOVE_WORD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                isFail: false,
+                items: state.items.map(item => item.id == action.payload.pack_id 
+                    ? {...item, words: item.words.filter(word => word.id != action.payload.id )}
+                    : item
+                ),
+                selectedPack: {...state.selectedPack, words: state.selectedPack.words.filter(word => word.id != action.payload.id )}   
+            }
+
+        case REMOVE_WORD_FAIL:
+            return {
+                ...state,
+                loading: false,
+                isFail: true
+            }
+
         default:
           return state
       }
