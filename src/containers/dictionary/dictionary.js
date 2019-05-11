@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import DictionaryHeader from './dictionary-header/dictionary-header';
 import DictionaryContent from './dictionary-content/dictionary-content';
 import DictionaryEmpty from './dictionary-empty/dictionary-empty';
-import Loader from '../../components/loader/loader';
+import Wrapper from '../../components/wrapper/wrapper';
 import {
   getPacksRequest, 
   addNewPackRequest, 
@@ -33,6 +33,7 @@ class Dictionary extends React.PureComponent {
       selectedPack, 
       loading, 
       isAnyPacks, 
+      isFail,
       addNewPackRequest, 
       setPack,
       addNewWordRequest,
@@ -42,7 +43,7 @@ class Dictionary extends React.PureComponent {
     } = this.props
 
     return (
-      <Loader isLoading={loading}>
+      <Wrapper isLoading={loading} isFail={isFail}>
         {
           isAnyPacks ? (
             <section className={styles["dictionary-container"]}>
@@ -66,7 +67,7 @@ class Dictionary extends React.PureComponent {
             />
           )
         }
-      </Loader>
+      </Wrapper>
     )
   }
 };
@@ -79,7 +80,8 @@ function mapStateToProps(state) {
     isAnyPacks: packs.isAnyPacks,
     packs: packs.items,
     loading: packs.loading,
-    isSet: packs.isSet
+    isSet: packs.isSet,
+    isFail: packs.isFail
   }
 }
 

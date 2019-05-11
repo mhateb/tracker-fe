@@ -5,13 +5,13 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 
 import {loginRequest} from '../../../actions/userActions';
-import Loader from '../../../components/loader/loader';
+import Wrapper from '../../../components/wrapper/wrapper';
 
 import styles from '../auth.scss';
 
-const Login = ({handleSubmit, loginRequest, loading}) => {
+const Login = ({handleSubmit, loginRequest, loading, isFail}) => {
   return (
-    <Loader isLoading={loading}>
+    <Wrapper isLoading={loading} isFail={isFail}>
       <div className={styles["form-container"]}>
         <form onSubmit={handleSubmit(val => loginRequest(val))}>
           <div className={styles["form-field"]}>
@@ -28,7 +28,7 @@ const Login = ({handleSubmit, loginRequest, loading}) => {
           </div>
         </form>
       </div>
-    </Loader>
+    </Wrapper>
   )
 };
 
@@ -41,7 +41,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
       isSet: state.user.isSet,
-      loading: state.user.loading
+      loading: state.user.loading,
+      isFail: state.user.isFail
   };
 };
 
