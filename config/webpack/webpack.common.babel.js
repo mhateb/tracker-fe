@@ -25,7 +25,8 @@ module.exports = {
                 minifyURLs: true,
                 removeComments: true,
                 removeAttributeQuotes: true
-            }
+            },
+            favicon: 'src/favicon.ico'
         }),
     ]
 };

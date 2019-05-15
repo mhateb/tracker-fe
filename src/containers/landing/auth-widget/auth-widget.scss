@@ -33,3 +33,23 @@
     text-decoration: none;
     color: #282828;
 }
+
+.auth-widget-is-set {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    & > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 20px;
+        text-align: center;
+        padding: 15px 30px;
+        background-color: white;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #282828;
+    }
+}
