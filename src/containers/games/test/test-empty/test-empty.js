@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './test-empty.scss';
 
-class Test extends React.PureComponent {
+class TestEmpty extends React.PureComponent {
     render () {
         return (
             <section className={styles["test-empty-container"]}>
@@ -14,4 +15,4 @@ class Test extends React.PureComponent {
     }
 }
 
-export default Test
+export default TestEmpty
