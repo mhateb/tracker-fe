@@ -75,6 +75,7 @@
     "cross-env": "^5.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-minimal-pie-chart": "^4.0.0",
     "react-router-dom": "^5.0.0",
     "redux-form": "^8.2.0",
     "redux-saga": "^1.0.2"
