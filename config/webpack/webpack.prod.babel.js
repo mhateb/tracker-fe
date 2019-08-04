@@ -11,9 +11,7 @@ module.exports = {
         chunkFilename: '[name].[chunkhash].js'
     },
     plugins: [
-        new CleanWebpackPlugin([paths.outputPath.split('/').pop()], {
-            root: paths.root
-        }),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
           filename: '[name].[hash].css',
           chunkFilename: '[id].[hash].css',
