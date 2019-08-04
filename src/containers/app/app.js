@@ -1,5 +1,5 @@
 import React  from 'react';
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 
 import NotFound from 'components/not-found/not-found';
 import Profile from 'containers/profile/profile';
@@ -22,7 +22,7 @@ class App extends React.PureComponent {
   render() {
     return (
       <Router>
-        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={() => <Redirect to="/login" />} />
         <PrivateRoute path="/profile" component={() => <Default> <Profile /> </Default>}/>
         <PrivateRoute path="/news" component={() => <Default> <News /> </Default>}/>
         <PrivateRoute path="/dictionary" component={() => <Default> <Dictionary /> </Default>}/>

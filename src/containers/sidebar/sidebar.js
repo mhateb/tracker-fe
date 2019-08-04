@@ -95,8 +95,8 @@ class Sidebar extends PureComponent {
         </div>
         <div className={styles["sidebar-block"]}>
           <div className={styles["sidebar-block-item"]}>
-            <img src={LogoutIcon} />
             <Link to="/" onClick={userLogout}>
+              <img src={LogoutIcon} />
               <span>Выйти</span>
             </Link>
           </div>
