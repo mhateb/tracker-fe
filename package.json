@@ -13,6 +13,10 @@
     "test:cover": "npm run test --coverage",
     "flow": "flow"
   },
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.10.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

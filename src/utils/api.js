@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const makeRequest = ({url, type = 'post', baseURL = 'http://localhost:5000/api/v1'}) => (data, query, config) =>
+const makeRequest = ({url, type = 'post', baseURL = 'https://tracker-be.herokuapp.com/api/v1'}) => (data, query, config) =>
   new Promise((resolve, reject) => {
     axios({
       method: type,
