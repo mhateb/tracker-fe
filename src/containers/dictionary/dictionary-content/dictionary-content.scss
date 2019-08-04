@@ -107,6 +107,12 @@
     & > .large {
         width: 255px;
     }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 200px;
+    }
 }
 
 .form-update {
@@ -142,6 +148,12 @@
         & > img {
             width: 20px;
             height: 20x;
+        }
+    }
+
+    @media (max-width: 600px) {
+        & > input {
+            width: 80px;
         }
     }
 }

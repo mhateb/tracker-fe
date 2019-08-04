@@ -13,16 +13,8 @@ const Login = ({handleSubmit, loginRequest, loading, isFail, textError}) => {
   return (
     <Wrapper isLoading={loading} isFail={isFail}>
       <div className={styles["form-container"]}>
-        {
-          textError !== '' ? (
-            <div className={styles.error}>
-              <p>{textError}</p>
-            </div>
-          ) : (
-            null
-          )
-        }
         <form onSubmit={handleSubmit(val => loginRequest(val))}>
+		  <p>Войти в English Tracker</p>
           <div className={styles["form-field"]}>
             <label htmlFor="email">Логин</label>
             <Field name="email" component="input" type="text" required />

@@ -20,6 +20,10 @@ const makeRequest = ({url, type = 'post', baseURL = 'http://localhost:5000/api/v
         resolve(response.data);
       })
       .catch((error) => {
+        if (error.status === 401) {
+          localStorage.clear()
+          window.location('/login')
+        }
         reject(error.response);
       });
   });

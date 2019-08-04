@@ -9,6 +9,7 @@ import DictionaryIcon from 'resources/icons/dictionary.svg';
 import TrainingIcon from 'resources/icons/training.svg';
 import RatingIcon from 'resources/icons/rating.svg';
 import LogoutIcon from 'resources/icons/logout.svg';
+import Hamburger from 'resources/icons/hamburger.svg';
 import { userLogout } from 'actions/userActions';
 
 import styles from "./sidebar.scss";
@@ -54,11 +55,9 @@ class Sidebar extends PureComponent {
   getProfileLinks = () => (
     this.state.profileLinks.map((item) => (
       <div className={styles["sidebar-block-item"]} key={item.id}>
-        {
-          item.icon
-        }
         <Link to={item.link}>
-          {item.title}
+          {item.icon}
+          <span>{item.title}</span>
         </Link>
       </div>
     ))
@@ -67,11 +66,10 @@ class Sidebar extends PureComponent {
   getDictionaryLinks = () => (
     this.state.dictionaryLinks.map((item) => (
       <div className={styles["sidebar-block-item"]} key={item.id}>
-        {
-          item.icon
-        }
+       
         <Link to={item.link}>
-          {item.title}
+          {item.icon}
+          <span>{item.title}</span>
         </Link>
       </div>
     ))
@@ -99,7 +97,7 @@ class Sidebar extends PureComponent {
           <div className={styles["sidebar-block-item"]}>
             <img src={LogoutIcon} />
             <Link to="/" onClick={userLogout}>
-              Выйти
+              <span>Выйти</span>
             </Link>
           </div>
         </div>

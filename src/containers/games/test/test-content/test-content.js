@@ -5,7 +5,8 @@ import styles from './test-content.scss';
 class TestContent extends React.PureComponent {
     state = {
         active: false,
-        selectedIndexVariant: null
+        selectedIndexVariant: null,
+        isBlock: false
     }
 
     getClassName = (variant, index) => {
@@ -29,30 +30,34 @@ class TestContent extends React.PureComponent {
         return result.join(' ')
     }
 
-    getAnswer = (index) => {
-        const { setNext } = this.props
+    getAnswer = (variant, index) => {
+        const { setNext, result, setResult } = this.props
+
+        if (variant.isTrueAnswer) {
+            setResult({...result, trueAnswers: result.trueAnswers + 1})
+        } else {
+            setResult({...result, falseAnswers: result.falseAnswers + 1})
+        }
 
         if (!this.state.active) {
-            this.setState({active: true, selectedIndexVariant: index})
+            this.setState({active: true, selectedIndexVariant: index, isBlock: true})
             setTimeout(() => {
                 setNext()
-                this.setState({active: false, selectedIndexVariant: null})
+                this.setState({active: false, selectedIndexVariant: null, isBlock: false})
             }, 1500)
         }
     }
 
     getVariantItem = (variant, index) => {
         return (
-            <div key={index} onClick={() => this.getAnswer(index)} className={this.getClassName(variant, index)}>
+            <button disabled={this.state.isBlock} key={index} onClick={() => this.getAnswer(variant, index)} className={this.getClassName(variant, index)}>
                 <span>{variant.word}</span>
-            </div>
+            </button>
         )
     }
 
     render () {
         const { variants } = this.props
-
-        console.log(variants)
 
         return (
             <section className={styles["test-content-container"]}>

@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -12,15 +12,25 @@ import styles from './test.scss';
 
 class Test extends React.PureComponent {    
     state = {
-        VariantsGenerator: VariantsGenerator(this.props.selectedPack.words),
+        VariantsGenerator: VariantsGenerator(this.props.selectedPack && this.props.selectedPack.words),
         isEnd: false,
         isStart: true,
-        variants: {}
+        variants: {
+            words: []
+        },
+        result: {
+            trueAnswers: 0,
+            falseAnswers: 0
+        }
+    }
+
+    setResult = (result) => {
+        this.setState({result: result})
     }
 
     getVariants = () => {
         const variants = this.state.VariantsGenerator.next()
-        console.log(variants)
+
         if (variants.done) {
             this.setState({isEnd: true})
             return false
@@ -45,11 +55,18 @@ class Test extends React.PureComponent {
             )
         } else if (this.state.isEnd) {
             return (
-                <TestEnd />
+                <TestEnd 
+                    result={this.state.result}
+                />
             )
         } else {
             return (
-                <TestContent setNext={this.setNext} variants={this.state.variants} />
+                <TestContent 
+                    setNext={this.setNext}
+                    variants={this.state.variants} 
+                    result={this.state.result}
+                    setResult={this.setResult}
+                />
             )
         }
     }
@@ -57,8 +74,12 @@ class Test extends React.PureComponent {
     render () {
         const {selectedPack} = this.props
 
+        if (!selectedPack) {
+            location.href = "/training"
+        }
+
         return (
-            selectedPack.words.length > 15 ? (
+            selectedPack && selectedPack.words.length > 15 ? (
                 this.getTestContent()
             ) : (
                 <TestEmpty />

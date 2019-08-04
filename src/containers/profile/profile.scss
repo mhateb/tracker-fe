@@ -1,15 +1,6 @@
 .profile-container {
-    padding: 50px;
-}
-
-.profile-info {
     display: flex;
-    justify-content: space-between;
+    height: 100vh;
+    justify-content: center;
     align-items: center;
-    height: 300px;
-    border-bottom: 4px solid black;
-}
-
-.profile-packs {
-    border-bottom: 4px solid black;
 }
