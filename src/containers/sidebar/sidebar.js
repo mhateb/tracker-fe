@@ -9,7 +9,6 @@ import DictionaryIcon from 'resources/icons/dictionary.svg';
 import TrainingIcon from 'resources/icons/training.svg';
 import RatingIcon from 'resources/icons/rating.svg';
 import LogoutIcon from 'resources/icons/logout.svg';
-import Hamburger from 'resources/icons/hamburger.svg';
 import { userLogout } from 'actions/userActions';
 
 import styles from "./sidebar.scss";

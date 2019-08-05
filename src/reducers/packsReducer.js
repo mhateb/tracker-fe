@@ -111,8 +111,7 @@ export function packsReducer(state = initialState, action) {
 
         case UPDATE_PACK_REQUEST: {
             return {
-                ...state,
-                loading: true
+                ...state
             }
         }
 
@@ -171,8 +170,7 @@ export function packsReducer(state = initialState, action) {
             
         case ADD_NEW_WORD_REQUEST:
             return {
-                ...state,
-                loading: true
+                ...state
             }    
 
         case ADD_NEW_WORD_SUCCESS:
@@ -196,8 +194,7 @@ export function packsReducer(state = initialState, action) {
 
         case REMOVE_WORD_REQUEST:
             return {
-                ...state,
-                loading: true
+                ...state
             }    
             
         case REMOVE_WORD_SUCCESS:

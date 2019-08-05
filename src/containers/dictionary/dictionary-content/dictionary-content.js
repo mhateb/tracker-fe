@@ -49,10 +49,9 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, removePackRequest, 
           {
             selectedPack.words.length > 0 ? (
               <>
-                <Table words={selectedPack.words} removeWordRequest={removeWordRequest}/>
                 {
                   isEdit ? (
-                    <AddWordForm addNewWordRequest={addNewWordRequest} />
+                    <AddWordForm addNewWordRequest={addNewWordRequest} setIsEdit={setIsEdit} isEdit={isEdit} />
                   ) : (
                     <button onClick={handleAddClick} className={styles["add-button"]}>
                       <img src={AddIcon} />
@@ -60,6 +59,7 @@ const DictionaryContent = ({selectedPack, addNewWordRequest, removePackRequest, 
                     </button>
                   )
                 }
+                <Table words={selectedPack.words} removeWordRequest={removeWordRequest}/>
               </>
             ) : (
               <div className={styles["content-empty"]}>

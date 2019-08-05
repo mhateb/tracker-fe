@@ -10,6 +10,10 @@
   flex-direction: column;
 }
 
+.hamburger {
+  display: none;
+}
+
 .logo {
   width: 140px;
   height: 45px;
@@ -68,5 +72,12 @@
 @media (max-width: 600px) {
   .sidebar {
     width: 50px;
+  }
+
+  .hamburger {
+    display: block;
+    margin-top: 20px;
+    cursor: pointer;
+    height: 25px;
   }
 }
