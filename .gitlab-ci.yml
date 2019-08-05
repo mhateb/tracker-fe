@@ -1,0 +1,26 @@
+
+image: node:latest
+
+stages:
+  - build
+  - deploy
+
+build: 
+  type: build
+  stage: build
+  image: node:alpine
+  script: 
+    - npm install
+    - npm run build
+  only:
+    - master
+  
+production:
+  type: deploy
+  stage: production
+  image: ruby:latest
+  script:
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/text-giving.git
+    - git push heroku master
+  only:
+    - master

@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const makeRequest = ({url, type = 'post', baseURL = 'https://tracker-be.herokuapp.com/api/v1'}) => (data, query, config) =>
+const apiUrl = process.env.NODE_ENV === "development" ? "http://localhost:5000/api/v1" : "https://tracker-be.herokuapp.com/api/v1"
+
+console.log(apiUrl)
+
+const makeRequest = ({url, type = 'post', baseURL = apiUrl}) => (data, query, config) =>
   new Promise((resolve, reject) => {
     axios({
       method: type,
