@@ -11,6 +11,9 @@ build:
   script: 
     - npm install
     - npm run build
+  artifacts:
+    paths:
+      - build/
   only:
     - master
   
@@ -19,7 +22,9 @@ production:
   stage: deploy
   image: ruby:latest
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/text-giving.git
-    - git push heroku master
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY --skip_cleanup
   only:
     - master
