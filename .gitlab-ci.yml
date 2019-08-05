@@ -1,4 +1,3 @@
-
 image: node:latest
 
 stages:
@@ -17,7 +16,7 @@ build:
   
 production:
   type: deploy
-  stage: production
+  stage: deploy
   image: ruby:latest
   script:
     - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/text-giving.git
