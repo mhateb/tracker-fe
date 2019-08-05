@@ -9,7 +9,6 @@ build:
   stage: build
   image: node:alpine
   script: 
-    - git checkout master
     - npm install
     - npm run build
   only:
