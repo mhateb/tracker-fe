@@ -1,32 +1,51 @@
-import React, {memo} from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
-import { Link } from 'react-router-dom';
+import React, {memo} from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { Field, reduxForm } from "redux-form";
+import { Link } from "react-router-dom";
 
-import {loginRequest} from 'actions/userActions';
-import Wrapper from 'components/wrapper/wrapper';
+import {loginRequest} from "actions/userActions";
+import Wrapper from "components/wrapper/wrapper";
+import Button from "components/button/button";
 
-import styles from '../auth.scss';
+import styles from "../auth.scss";
 
 const Login = ({handleSubmit, loginRequest, loading, isFail, textError}) => {
   return (
     <Wrapper isLoading={loading} isFail={isFail}>
       <div className={styles["form-container"]}>
         <form onSubmit={handleSubmit(val => loginRequest(val))}>
-		  <p>Войти в English Tracker</p>
+		      <p className={styles["form-title"]}>Войти</p>
           <div className={styles["form-field"]}>
-            <label htmlFor="email">Логин</label>
-            <Field name="email" component="input" type="text" required />
+            <Field 
+              name="email"
+              component="input" 
+              type="text" 
+              placeholder="Email"
+              required 
+            />
           </div>
           <div className={styles["form-field"]}>
-            <label htmlFor="password">Пароль</label>
-            <Field name="password" component="input" type="password" required />
+            <Field 
+              name="password" 
+              component="input" 
+              type="password"
+              placeholder="Пароль" 
+              required 
+            />
           </div>
-          <div className={styles["form-submit"]}>
-            <button type="submit">Войти</button>
-            <span>Ещё не зарегистрированы? <Link to="/register">Регистрация</Link></span>
+          <div className={styles["controls"]}>
+            <Button 
+              color="yellow"
+              width="100%"
+            >
+              Войти
+            </Button>
           </div>
+          <span className={styles["form-link"]}>
+            Ещё не зарегистрированы? 
+            <Link to="/register">Регистрация</Link>
+          </span>
         </form>
       </div>
     </Wrapper>
