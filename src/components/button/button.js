@@ -13,7 +13,8 @@ const Button = (props) => {
 
     const cssStyles = {
         backgroundColor: color,
-        width: width
+        width: width,
+        color: color === "black" ? "white" : "black"
     }
 
     return (

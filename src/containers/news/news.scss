@@ -1,6 +1,10 @@
 .news-container {
     display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    margin: 20px;
+    flex-wrap: wrap;
+
+    & > div {
+        margin: 10px;
+    }
 }
