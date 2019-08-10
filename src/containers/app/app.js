@@ -27,7 +27,6 @@ class App extends React.PureComponent {
         <PrivateRoute path="/news" component={() => <Default> <News /> </Default>}/>
         <PrivateRoute path="/dictionary" component={() => <Default> <Dictionary /> </Default>}/>
         <PrivateRoute path="/training" component={() => <Default> <Training /> </Default>}/>
-        <PrivateRoute path="/rating" component={() => <Default> <Rating /> </Default>}/>
         <PrivateRoute path="/test" component={() => <Default> <Test /> </Default>}/>
         <AuthRoute path="/login" component={() => <Login /> }/>
         <AuthRoute path="/register" component={() => <Register /> }/>

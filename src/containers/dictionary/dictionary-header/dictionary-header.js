@@ -30,7 +30,7 @@ const DictionaryHeader = ({packs, addNewPackRequest, selectedPack, handleSubmit,
             </div>
             <div className={styles["add-pack"]}>
                 <form onSubmit={handleSubmit(val => addNewPackRequest(val))}>
-                    <label htmlFor="title">Добавить коллекцию</label>
+                    <label htmlFor="title">Добавить коллекцию:</label>
                     <div>
                         <Field name="title" component="input" type="text" placeholder="Название коллекции" required />
                         <button type="submit">

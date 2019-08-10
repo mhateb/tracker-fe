@@ -42,12 +42,6 @@ class Sidebar extends PureComponent {
         link: "/training",
         icon: <img src={TrainingIcon} />
       },
-      {
-        id: 5,
-        title: "Рейтинг",
-        link: "/rating",
-        icon: <img src={RatingIcon} />
-      }
     ]
   }
 

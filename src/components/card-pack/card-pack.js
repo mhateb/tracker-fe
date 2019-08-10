@@ -23,7 +23,7 @@ const CardPack = (props) => {
             <div className={styles["card-controls"]}>
                 <Button 
                     color="yellow"
-                    width="80px"
+                    width="90px"
                 >
                     Action
                 </Button>
