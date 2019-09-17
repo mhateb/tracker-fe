@@ -1,43 +1,57 @@
-import React, {memo} from "react";
+import React, { memo, useState } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
-
+ 
 import {loginRequest} from "actions/userActions";
 import Wrapper from "components/wrapper/wrapper";
 import Button from "components/button/button";
+import Input from "components/input/input";
 
 import styles from "../auth.scss";
 
 const Login = ({handleSubmit, loginRequest, loading, isFail, textError}) => {
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: ""
+  })
+
+  const onChangeFormHandler = ({ target: { name, value } }) => {
+    setFormValue((prev) => ({...prev, [name]: value}))
+  }
+
+  const onSubmitHandler = () => {
+    console.log(formValue)
+    loginRequest({...formValue})
+  }
+
   return (
     <Wrapper isLoading={loading} isFail={isFail}>
       <div className={styles["form-container"]}>
-        <form onSubmit={handleSubmit(val => loginRequest(val))}>
+        <form onSubmit={onSubmitHandler}>
 		      <p className={styles["form-title"]}>Войти</p>
-          <div className={styles["form-field"]}>
-            <Field 
-              name="email"
-              component="input" 
-              type="text" 
-              placeholder="Email"
-              required 
-            />
-          </div>
-          <div className={styles["form-field"]}>
-            <Field 
-              name="password" 
-              component="input" 
-              type="password"
-              placeholder="Пароль" 
-              required 
-            />
-          </div>
+          <label className={styles["form-label"]}>Логин</label>
+          <Input
+            type="text"
+            required 
+            width="280px"
+            name="email"
+            value={formValue.email}
+            onChange={onChangeFormHandler}
+          />
+          <label className={styles["form-label"]}>Пароль</label>
+          <Input
+            type="text"
+            required 
+            width="280px"
+            name="password"
+            value={formValue.password}
+            onChange={onChangeFormHandler}
+          />
           <div className={styles["controls"]}>
             <Button 
               color="yellow"
-              width="100%"
+              width="295px"
             >
               Войти
             </Button>
@@ -72,8 +86,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  memo,
-  reduxForm({
-    form: 'login-form'
-  })
+  memo
 )(Login)

@@ -40,15 +40,15 @@ const api = {
     },
     packs: {
         new: (makeRequest({url: '/packs'})),
-        all: (makeRequest({url: '/packs/all', type: 'get'})),
-        delete: (makeRequest({url: '/packs/delete'})),
-        update: (makeRequest({url: '/packs/update'}))
+        all: (makeRequest({url: '/packs', type: 'get'})),
+        delete: (makeRequest({url: '/packs', type: 'delete'})),
+        update: (makeRequest({url: '/packs', type: 'update'}))
     },
     words: {
-        new: (makeRequest({url: '/words'})),
-        all: (makeRequest({url: '/words/all'})),
-        delete: (makeRequest({url: '/words/delete'})),
-        update: (makeRequest({url: '/words/update'}))
+        new: (makeRequest({url: '/words/new'})),
+        all: (makeRequest({url: '/words'})),
+        delete: (makeRequest({url: '/words'})),
+        update: (makeRequest({url: '/words'}))
     }
 };
 

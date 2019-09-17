@@ -1,61 +1,63 @@
-import React, {memo} from "react";
+import React, {memo, useState} from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
 import {registerRequest} from "actions/userActions";
 import Wrapper from "components/wrapper/wrapper";
 import Button from "components/button/button";
+import Input from "components/input/input";
 
 import styles from '../auth.scss';
 
-const Register = ({registerRequest, handleSubmit, loading, isFail}) => {
+const Register = ({registerRequest, loading, isFail}) => {
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: "",
+    confirmation: ""
+  })
+
+  const onChangeFormHandler = ({ target: { name, value } }) => {
+    setFormValue((prev) => ({...prev, [name]: value}))
+  }
+
+  const onSubmitHandler = () => {
+    registerRequest({...formValue})
+  }
+
   return (
     <Wrapper isLoading={loading} isFail={isFail}>
       <div className={styles["form-container"]}>
-        <form onSubmit={handleSubmit(val => registerRequest(val))}>
+        <form onSubmit={onSubmitHandler} style={{ height: "450px" }}>
           <p className={styles["form-title"]}>Регистрация</p>
-          <div className={styles["form-field"]}>
-            <Field 
-              name="username" 
-              component="input" 
-              type="text" 
-              placeholder="Логин"
-              required 
-            />
-          </div>
-          <div className={styles["form-field"]}>
-            <Field 
-              name="email" 
-              component="input" 
-              type="email" 
-              placeholder="Email"
-              required 
-            />
-          </div>
-          <div className={styles["form-field"]}>
-            <Field 
-              name="password" 
-              component="input" 
-              type="password" 
-              placeholder="Пароль"
-              required 
-            />
-          </div>
-          <div className={styles["form-field"]}>
-            <Field 
-              name="confirmation" 
-              component="input" 
-              type="password" 
-              placeholder="Повторите пароль"
-              required 
-            />
-          </div>
+          <label className={styles["form-label"]}>Логин</label>
+          <Input
+            type="email"
+            required 
+            width="280px"
+            name="email"
+            onChange={onChangeFormHandler}
+          />
+          <label className={styles["form-label"]}>Пароль</label>
+          <Input
+            type="password"
+            required 
+            width="280px"
+            name="password"
+            onChange={onChangeFormHandler}
+          />
+          <label className={styles["form-label"]}>Повторите пароль</label>
+          <Input
+            type="password"
+            required 
+            width="280px"
+            name="confirmation"
+            onChange={onChangeFormHandler}
+          />
           <div className={styles["controls"]}>
             <Button 
               color="yellow"
-              width="100%"
+              width="295px"
             >
               Зарегистрироваться
             </Button>
@@ -88,9 +90,6 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  memo,
-  reduxForm({
-    form: 'register-form'
-  })
+  memo
 )(Register)
 
