@@ -1,4 +1,3 @@
-// @flow
 export const GET_PACKS_REQUEST = 'GET_PACKS_REQUEST';
 export const GET_PACKS_SUCCESS = 'GET_PACKS_SUCCESS';
 export const GET_PACKS_FAIL = 'GET_PACKS_FAIL';

@@ -1,4 +1,3 @@
-// @flow
 import { 
     SET_TRAINING_PACK,
     TRUE_ANSWER_REQUEST,

@@ -1,4 +1,3 @@
-// @flow
 import { 
     TEST_INIT
   } from '../actions/testActions'

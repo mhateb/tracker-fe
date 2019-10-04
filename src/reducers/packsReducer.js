@@ -1,4 +1,3 @@
-// @flow
 import { 
     GET_PACKS_REQUEST,
     GET_PACKS_SUCCESS,
